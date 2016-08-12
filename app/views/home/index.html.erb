@@ -1,0 +1,18 @@
+<div class="page-header">
+	<div class="page-body">
+		<div class="page-header">
+			<h1>
+				List of Blogs
+			</h1>
+			<p><%= link_to "Create Blog", blogs_new_path , class: "btn btn-primary btn-lg" %>
+		</div>
+
+			<ul class="list-group">
+				<% @blogs.each do |blog| %>
+					<li class="list-group-item">
+						<%= link_to blog.name, "#" %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+</div>
