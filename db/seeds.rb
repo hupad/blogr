@@ -20,5 +20,7 @@ end
 10.times do |i|
 
 	slug = random_string()
-	Blog.create(name: "A new blog title #{i}", url_slug: slug)
+	blog = Blog.create(name: "A new blog title #{i}", url_slug: slug)
+
+	post = Post.create(title: "A new post #{i}", content: "Some random content #{i}", blog_id: blog.id)
 end

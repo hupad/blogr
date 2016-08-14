@@ -10,8 +10,10 @@ gem 'turbolinks'
 gem "figaro"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'devise'
+gem 'aws-sdk', '~> 2.3'
 gem "paperclip", "~> 5.0.0"
 gem 'puma'
+gem 'simple_form'
 
 group :test do
 	gem 'rspec-rails'

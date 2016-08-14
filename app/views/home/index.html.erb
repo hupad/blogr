@@ -10,7 +10,12 @@
 			<ul class="list-group">
 				<% @blogs.each do |blog| %>
 					<li class="list-group-item">
-						<%= link_to blog.name, "#" %>
+						<h2>
+							<%= link_to blog.name, posts_path(slug: blog.url_slug) %>
+						</h2>
+						<p>
+							<b>Blogger: </b> <%= blog.url_slug %>
+						</p>
 					</li>
 				<% end %>
 			</ul>

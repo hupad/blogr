@@ -1,0 +1,22 @@
+<%= link_to "Posts", posts_path(@blog.url_slug) %>
+<h1>Comments</h1>
+
+<% @comments.each do |comment| %>
+
+	<div class="well well-lg">
+		<p>
+			<%= comment.text %>
+		</p>
+	</div>
+
+<% end %>
+
+<h1>
+	New Comment
+</h1>
+<%= simple_form_for :comment, url: create_comments_path do |f| %>
+	
+	<%= f.input :text, as: :text %>
+	<%= f.submit "Submit", class: 'btn btn-lg btn-primary' %>
+
+<% end %>
