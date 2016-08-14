@@ -11,9 +11,11 @@
 		</h1>
 	</div>
 	<div class="col-md-1">
-		<p>
-			<%= link_to "New Post", new_post_path, class: 'btn btn-lg btn-primary' %>
-		</p>
+		<% if user_has_access?(@blog.user) %>
+			<p>
+				<%= link_to "New Post", new_post_path, class: 'btn btn-lg btn-primary' %>
+			</p>
+		<% end %>
 	</div>
 	<div class="col-md-1">
 		<p>
@@ -32,7 +34,7 @@
 				<%= post.content %>
 			</p>
 			
-			<% if user_has_access_to_edit?(current_user, @blog.user) %>
+			<% if user_has_access?(@blog.user) %>
 				<%= link_to edit_post_path(@blog.url_slug, post.id) do %>
 					<span class="glyphicon glyphicon-pencil space"></span>
 				<% end %>

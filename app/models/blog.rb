@@ -1,4 +1,5 @@
 class Blog < ApplicationRecord
+	before_save :sanitize_url_slug
 
 	validates :name, :url_slug, presence: true
 	has_many :posts, dependent: :destroy
@@ -11,5 +12,10 @@ class Blog < ApplicationRecord
 	scope :find_by_slug, ->(slug) {find_by(url_slug: slug)}
 	scope :posts_from_slug, ->(slug) {find_by(url_slug: slug).posts}
 	scope :posts_from_slug_in_order, ->(slug) {find_by(url_slug: slug).posts.order('id desc')}
+
+
+	def sanitize_url_slug
+		self.url_slug.delete!("\s")
+	end
 
 end

@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-	
 	before_action :get_blog_and_posts_from_slug, only: [:index, :create, :edit, :update, :destroy]
 
 	def new
