@@ -14,6 +14,7 @@ gem 'aws-sdk', '~> 2.3'
 gem "paperclip", "~> 5.0.0"
 gem 'puma'
 gem 'simple_form'
+gem 'redcarpet'
 
 group :test do
 	gem 'rspec-rails'

@@ -10,8 +10,6 @@ class Blog < ApplicationRecord
 
 
 	scope :find_by_slug, ->(slug) {find_by(url_slug: slug)}
-	scope :posts_from_slug, ->(slug) {find_by(url_slug: slug).posts}
-	scope :posts_from_slug_in_order, ->(slug) {find_by(url_slug: slug).posts.order('id desc')}
 
 
 	def sanitize_url_slug

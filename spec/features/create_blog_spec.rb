@@ -33,4 +33,19 @@ feature 'Create new blog' do
 		expect(page).to have_content("can't be blank")
 
 	end
+
+	scenario 'with no url slug' do
+
+		visit root_path
+
+		click_on('Create Blog')
+
+		fill_in('Name', with: 'Some name')
+		fill_in('Url slug', with: '')
+
+		click_on('Create')
+
+		expect(page).to have_content("can't be blank")
+
+	end
 end

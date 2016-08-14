@@ -14,6 +14,8 @@ class PostsController < ApplicationController
 
 	def index
 		@posts = @blog.posts.order('id desc')
+		@redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+		
 		respond_to do |format|
 			format.html
 			format.rss { render layout: false }

@@ -31,7 +31,7 @@
 				<%= link_to post.title, "#" %>
 			</h2>
 			<p>
-				<%= post.content %>
+				<%= @redcarpet.render(post.content).html_safe %>
 			</p>
 			
 			<% if user_has_access?(@blog.user) %>
