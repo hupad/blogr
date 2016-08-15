@@ -4,6 +4,6 @@
 	<div class="form-group">
 		<%= f.input :title %>
 		<%= f.input :content, as: :text %>
-		<%= f.submit "Submit", class: 'btn btn-primary btn-lg' %>
+		<%= f.submit "Submit", class: 'btn btn-primary btn-lg', data: {disable_with: "Submit..."} %>
 	</div>
 <% end %>

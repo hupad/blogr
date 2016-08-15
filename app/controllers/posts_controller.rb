@@ -16,7 +16,8 @@ class PostsController < ApplicationController
 	def index
 		@posts = @blog.posts.order('id desc')
 		@redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-
+		@user_have_access = @blog.user == current_user
+		
 		respond_to do |format|
 			format.html
 			format.rss { render layout: false }

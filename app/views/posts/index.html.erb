@@ -11,7 +11,7 @@
 		</h1>
 	</div>
 	<div class="col-md-1">
-		<% if user_has_access?(@blog.user) %>
+		<% if @user_have_access %>
 			<p>
 				<%= link_to "New Post", new_post_path, class: 'btn btn-lg btn-primary' %>
 			</p>
@@ -34,7 +34,7 @@
 				<%= @redcarpet.render(post.content).html_safe %>
 			</p>
 			
-			<% if user_has_access?(@blog.user) %>
+			<% if @user_have_access %>
 				<%= link_to edit_post_path(@blog.url_slug, post.id) do %>
 					<span class="glyphicon glyphicon-pencil space"></span>
 				<% end %>
