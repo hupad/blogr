@@ -2,12 +2,12 @@ require 'rails_helper'
 require 'byebug'
 
 describe PostsController do
-
 	let(:user)  { FactoryGirl.create(:user) }
 	let(:blog)  { FactoryGirl.create(:blog) }
-	let(:post) { FactoryGirl.create(:post, blog: blog) }
 
 	describe "guest access" do
+		let(:post) { FactoryGirl.create(:post, blog: blog) }
+
 		describe "GET index" do
 			it "the instnace variable @posts should have posts" do
 				get :index, slug: blog.url_slug, id: post
@@ -32,14 +32,26 @@ describe PostsController do
 		describe "GET new" do
 			it "should redirect to create new post page" do
 				get :new, slug: blog.url_slug
-				expect(response).to redirect_to(new_post_path(blog.url_slug))
+				expect(response).to render_template('posts/new')
+			end
+			it "should have a new @post object" do
+				get :new, slug: blog.url_slug
+				expect(assigns[:post]).to be_a_new(Post)
 			end
 		end
 
-		# describe "POST create" do
-		# 	it "should create a post successfully"
-		# 	it "it should redirect to posts page"
-		# end
+		describe "POST create" do
+			context "valid data" do
+				let(:valid_data) { FactoryGirl.attributes_for(:post, blog_id: blog) }
+
+				it "should create a post successfully" do
+					expect{
+						post :create, { post: valid_data, slug: blog.url_slug }
+					}.to change(Post, :count).by(1)
+				end
+				# it "it should redirect to posts page"
+			end
+		end
 
 	end
 

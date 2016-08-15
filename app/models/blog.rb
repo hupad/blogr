@@ -13,7 +13,7 @@ class Blog < ApplicationRecord
 
 
 	def sanitize_url_slug
-		self.url_slug.delete!("\s")
+		self.url_slug.gsub!(/[^a-zA-Z0-9\-]/,"")
 	end
 
 end
