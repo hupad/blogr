@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.3.1"
 
 gem 'rails', '4.2.2'
 gem 'mysql2', '~> 0.3.18'
@@ -15,6 +15,7 @@ gem "paperclip", "~> 5.0.0"
 gem 'puma'
 gem 'simple_form'
 gem 'redcarpet'
+gem 'rails_12factor'
 
 group :test do
 	gem 'rspec-rails'
