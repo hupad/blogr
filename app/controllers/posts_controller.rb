@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	before_action :get_blog_and_posts_from_slug, only: [:index, :create, :edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
+	before_action :get_blog_and_posts_from_slug, only: [:index, :create, :update, :destroy]
 
 	def new
 		@post = Post.new
@@ -15,15 +16,11 @@ class PostsController < ApplicationController
 	def index
 		@posts = @blog.posts.order('id desc')
 		@redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-		
+
 		respond_to do |format|
 			format.html
 			format.rss { render layout: false }
 		end
-	end
-
-	def edit
-		
 	end
 
 	def update
