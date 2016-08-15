@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
-	before_action :get_blog_and_posts_from_slug, only: [:index, :create, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+	before_action :get_blog_and_posts_from_slug, only: [:index, :create, :update, :edit, :destroy]
 
 	def new
 		@post = Post.new
@@ -10,6 +10,8 @@ class PostsController < ApplicationController
 		@post = @blog.posts.build(permit_params)
 		if @post.save
 			redirect_to posts_path(params[:slug]), notice: "Your post has been created successfully."
+		else
+			render :new
 		end
 	end
 
@@ -22,6 +24,10 @@ class PostsController < ApplicationController
 			format.html
 			format.rss { render layout: false }
 		end
+	end
+
+	def edit
+		
 	end
 
 	def update

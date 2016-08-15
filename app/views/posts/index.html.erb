@@ -27,25 +27,32 @@
 <div>
 	<% @posts.each do |post| %>
 		<div class="well well-lg">
-			<h2>
-				<%= link_to post.title, "#" %>
-			</h2>
-			<p>
-				<%= @redcarpet.render(post.content).html_safe %>
-			</p>
-			
-			<% if @user_have_access %>
-				<%= link_to edit_post_path(@blog.url_slug, post.id) do %>
-					<span class="glyphicon glyphicon-pencil space"></span>
-				<% end %>
-				<%= link_to delete_post_path(@blog.url_slug, post.id), method: :delete, 
-					data: { confirm: 'Are you sure?' } do %>
-					<span class="glyphicon glyphicon-trash space"></span>
-				<% end %>
-			<% end %>
-			<%= link_to comments_path(@blog.url_slug, post.id) do %>
-				<span class="glyphicon glyphicon-comment"></span>
-			<% end %>
+			<div class="row">
+					<div class="col-md-2">
+						<%= image_tag @blog.user.gravatar(100) %>
+					</div>
+
+					<div class="col-md-10">
+						<h2>
+							<%= link_to post.title, "#" %>
+						</h2>
+						<p>
+							<%= @redcarpet.render(post.content).html_safe %>
+						</p>
+						<% if @user_have_access %>
+							<%= link_to edit_post_path(@blog.url_slug, post.id) do %>
+								<span class="glyphicon glyphicon-pencil space"></span>
+							<% end %>
+							<%= link_to delete_post_path(@blog.url_slug, post.id), method: :delete, 
+								data: { confirm: 'Are you sure?' } do %>
+								<span class="glyphicon glyphicon-trash space"></span>
+							<% end %>
+						<% end %>
+						<%= link_to comments_path(@blog.url_slug, post.id) do %>
+							<span class="glyphicon glyphicon-comment"></span>
+						<% end %>
+					</div>
+			</div>
 		</div>
 	<% end %>
 </div>

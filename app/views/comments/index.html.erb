@@ -16,7 +16,7 @@
 </h1>
 <%= simple_form_for :comment, url: create_comments_path do |f| %>
 	
-	<%= f.input :text, as: :text %>
-	<%= f.submit "Submit", class: 'btn btn-lg btn-primary' %>
+	<%= f.input :text, as: :text, required: true %>
+	<%= f.submit "Submit", class: 'btn btn-lg btn-primary', data: {disable_with: "Submit..."} %>
 
 <% end %>

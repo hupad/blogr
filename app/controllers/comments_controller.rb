@@ -13,6 +13,8 @@ def create
 	@comment = @post.comments.build(permit_params)
 	if @comment.save
 		redirect_to comments_path(@blog.url_slug, params[:id]), notice: "Your comments has be posted successfully."
+	else
+		redirect_to comments_path(@blog.url_slug, params[:id]), flash: { error: "Cannot enter blank comment." }
 	end
 end
 

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'blogs/new', to: 'blog#new'
   post 'blogs', to: 'blog#create'
 
-  # CRUD Posts
+  # Posts
   get '/:slug', to: 'posts#index', as: 'posts'
   get '/:slug/rss', to: 'posts#feed', as: 'posts_rss'
 
