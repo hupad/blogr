@@ -1,7 +1,20 @@
 require 'rails_helper'
-
+require 'byebug'
 
 feature 'Create new blog' do
+	let(:user) { FactoryGirl.create(:user) }
+
+	before do
+
+		visit new_user_session_path
+
+		fill_in('Email', with: user.email)
+		fill_in('Password', with: user.password)
+
+		click_on("Log in")
+
+	end
+
 	scenario 'With valid data' do
 		
 		visit root_path
@@ -19,10 +32,10 @@ feature 'Create new blog' do
 
 	end
 
-	scenario 'with no name' do
+	scenario "Gives error message on missing blog name" do
 
 		visit root_path
-
+		
 		click_on('Create Blog')
 
 		fill_in('Name', with: '')
@@ -31,21 +44,6 @@ feature 'Create new blog' do
 		click_on('Create')
 
 		expect(page).to have_content("can't be blank")
-
 	end
 
-	scenario 'with no url slug' do
-
-		visit root_path
-
-		click_on('Create Blog')
-
-		fill_in('Name', with: 'Some name')
-		fill_in('Url slug', with: '')
-
-		click_on('Create')
-
-		expect(page).to have_content("can't be blank")
-
-	end
 end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'byebug'
 
 describe PostsController do
 	let(:user)  { FactoryGirl.create(:user) }
