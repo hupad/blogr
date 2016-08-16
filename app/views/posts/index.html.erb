@@ -27,7 +27,7 @@
 <div>
 	<% @posts.each do |post| %>
 		<div class="well well-lg">
-			<div class="row">
+			<div class="row" id="<%= dom_id(post) %>" >
 					<div class="col-md-2">
 						<%= image_tag @blog.user.gravatar(100) %>
 					</div>
@@ -40,15 +40,18 @@
 							<%= @redcarpet.render(post.content).html_safe %>
 						</p>
 						<% if @user_have_access %>
-							<%= link_to edit_post_path(@blog.url_slug, post.id) do %>
+							<%= link_to edit_post_path(@blog.url_slug, post.id), id: post.id do %>
+								Edit
 								<span class="glyphicon glyphicon-pencil space"></span>
 							<% end %>
 							<%= link_to delete_post_path(@blog.url_slug, post.id), method: :delete, 
 								data: { confirm: 'Are you sure?' } do %>
+								Delete
 								<span class="glyphicon glyphicon-trash space"></span>
 							<% end %>
 						<% end %>
 						<%= link_to comments_path(@blog.url_slug, post.id) do %>
+							Comments
 							<span class="glyphicon glyphicon-comment"></span>
 						<% end %>
 					</div>

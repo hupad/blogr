@@ -29,7 +29,7 @@ feature 'Create new blog' do
 		visit root_path
 
 		expect(page).to have_content('My new shiny blog')
-
+		
 	end
 
 	scenario "Gives error message on missing blog name" do

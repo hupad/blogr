@@ -32,7 +32,9 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(permit_params)
-			redirect_to posts_path(params[:slug]), notice: "Your post has be updated successfully."	
+			redirect_to posts_path(params[:slug]), notice: "Your post has be updated successfully."
+		else
+			render :edit
 		end
 	end
 
